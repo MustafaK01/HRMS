@@ -1,0 +1,25 @@
+package kodlamaio.hrms.business.concretes;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import kodlamaio.hrms.business.abstracts.IEmployerService;
+import kodlamaio.hrms.dataAccess.abstracts.IEmployerDao;
+import kodlamaio.hrms.entities.concretes.Employer;
+
+@Component
+public class EmployerManager implements IEmployerService{
+
+	private IEmployerDao employerDao;
+	@Autowired
+	public EmployerManager(IEmployerDao employerDao) {
+		this.employerDao=employerDao;
+	}
+	@Override
+	public List<Employer> getAll() {
+		return employerDao.findAll();
+	}
+
+}
