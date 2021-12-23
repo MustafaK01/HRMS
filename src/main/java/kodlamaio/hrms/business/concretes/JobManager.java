@@ -4,13 +4,13 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.IJobService;
 import kodlamaio.hrms.dataAccess.abstracts.IJobDao;
 import kodlamaio.hrms.entities.concretes.Jobs;
 
-@Component
+@Service
 public class JobManager implements IJobService{
 
 	private IJobDao jobDao;
