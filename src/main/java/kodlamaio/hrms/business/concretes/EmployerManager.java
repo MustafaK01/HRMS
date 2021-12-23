@@ -3,13 +3,13 @@ package kodlamaio.hrms.business.concretes;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import kodlamaio.hrms.business.abstracts.IEmployerService;
 import kodlamaio.hrms.dataAccess.abstracts.IEmployerDao;
 import kodlamaio.hrms.entities.concretes.Employer;
 
-@Service
+@Component
 public class EmployerManager implements IEmployerService{
 
 	private IEmployerDao employerDao;
