@@ -4,12 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.IEmployerService;
 import kodlamaio.hrms.dataAccess.abstracts.IEmployerDao;
 import kodlamaio.hrms.entities.concretes.Employer;
 
-@Component
+@Service
 public class EmployerManager implements IEmployerService{
 
 	private IEmployerDao employerDao;
