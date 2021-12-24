@@ -22,18 +22,18 @@ public class Employer extends User {
 	private String phoneNumber;
 	
 	@Column(name="web_address")
-	private String webSiteName;
+	private String webAddress;
 
 	public Employer() {
 		super();
 	}
 
-	public Employer(int id, String companyName, String phoneNumber, String webSiteName) {
+	public Employer(int id, String companyName, String phoneNumber, String webAddress) {
 		super();
 		this.id = id;
 		this.companyName = companyName;
 		this.phoneNumber = phoneNumber;
-		this.webSiteName = webSiteName;
+		this.webAddress = webAddress;
 	}
 
 	public int getId() {
@@ -60,12 +60,12 @@ public class Employer extends User {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public String getWebSiteName() {
-		return webSiteName;
+	public String getWebAddress() {
+		return webAddress;
 	}
 
-	public void setWebSiteName(String webSiteName) {
-		this.webSiteName = webSiteName;
+	public void setWebAddress(String webSiteName) {
+		this.webAddress = webSiteName;
 	}
 	
 }
