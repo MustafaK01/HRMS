@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.ICandidateService;
+import kodlamaio.hrms.core.utils.results.Result;
+import kodlamaio.hrms.core.utils.results.ResultData;
+import kodlamaio.hrms.core.utils.results.ResultDataSuccess;
+import kodlamaio.hrms.core.utils.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.ICandidateDao;
 import kodlamaio.hrms.entities.concretes.Candidates;
 
@@ -19,8 +23,13 @@ public class CandidateManager implements ICandidateService{
 	}
 	
 	@Override
-	public List<Candidates> getAll() {
-		return candidateDao.findAll();
+	public ResultData<List<Candidates>> getAll() {
+		return new ResultDataSuccess<List<Candidates>>(candidateDao.findAll(),"İş Arayanlar Listelendi");
+	}
+	public Result add(Candidates candidate) {
+		this.candidateDao.save(candidate);
+		return new SuccessResult("İş Arayan Eklendi");
+		
 	}
 
 }
