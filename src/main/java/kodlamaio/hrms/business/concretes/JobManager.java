@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.IJobService;
+import kodlamaio.hrms.core.utils.results.ErrorResult;
 import kodlamaio.hrms.core.utils.results.Result;
 import kodlamaio.hrms.core.utils.results.ResultData;
 import kodlamaio.hrms.core.utils.results.ResultDataSuccess;
@@ -31,6 +32,9 @@ public class JobManager implements IJobService{
 
 	@Override
 	public Result add(Jobs job) {
+		if(jobDao.existsByJobTitle(job.getJobTitle())) {
+			return new ErrorResult("İş Pozisyonu Zaten Var");
+		}
 		this.jobDao.save(job);
 		return new SuccessResult("Başarıyla Eklendi");
 	}
