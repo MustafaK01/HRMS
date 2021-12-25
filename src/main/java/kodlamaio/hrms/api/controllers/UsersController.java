@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import kodlamaio.hrms.business.abstracts.IUserService;
 import kodlamaio.hrms.core.utils.results.Result;
 import kodlamaio.hrms.core.utils.results.ResultData;
-import kodlamaio.hrms.core.utils.results.SuccessResult;
 import kodlamaio.hrms.entities.concretes.User;
 
 @RestController
@@ -30,8 +29,7 @@ public class UsersController {
 	}
 	@PostMapping("/add")
 	Result add(@RequestBody User user) {
-		this.userService.add(user);
-		return new SuccessResult("Başarıyla eklendi");
+		return this.userService.add(user);
 	}
 	
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.IUserService;
+import kodlamaio.hrms.core.utils.results.ErrorResult;
 import kodlamaio.hrms.core.utils.results.Result;
 import kodlamaio.hrms.core.utils.results.ResultData;
 import kodlamaio.hrms.core.utils.results.ResultDataSuccess;
@@ -30,7 +31,11 @@ public class UserManager implements IUserService{
 
 	@Override
 	public Result add(User user) {
+		if(this.userDao.existsByEmail(user.getEmail())) {
+			return new ErrorResult("Kullanıcı Zaten Var");
+		}
 		this.userDao.save(user);
 		return new SuccessResult("Başarıyla Eklendi");
 	}
+
 }

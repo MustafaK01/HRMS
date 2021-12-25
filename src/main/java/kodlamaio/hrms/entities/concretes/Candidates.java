@@ -1,7 +1,5 @@
 package kodlamaio.hrms.entities.concretes;
 
-import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,21 +25,21 @@ public class Candidates extends User{
 	@Column(name="national_identity")
 	private String nationalIdentity;
 	
-	@Column(name="date_of_birth")
-	private Date dateOfBirth;
+	@Column(name="birth_of_year")
+	private int birthOfYear;
 
 	public Candidates() {
 		super();
 
 	}
 
-	public Candidates(int id, String firstName, String lastName, String nationalIdentity, Date dateOfBirth) {
+	public Candidates(int id, String firstName, String lastName, String nationalIdentity, int birthOfYear) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.nationalIdentity = nationalIdentity;
-		this.dateOfBirth = dateOfBirth;
+		this.birthOfYear = birthOfYear;
 	}
 
 	public int getId() {
@@ -76,12 +74,12 @@ public class Candidates extends User{
 		this.nationalIdentity = nationalIdentity;
 	}
 
-	public Date getDateOfBirth() {
-		return dateOfBirth;
+	public int getBirthOfYear() {
+		return birthOfYear;
 	}
 
-	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
+	public void setBirthOfYear(int birthOfYear) {
+		this.birthOfYear = birthOfYear;
 	}
 	
 }

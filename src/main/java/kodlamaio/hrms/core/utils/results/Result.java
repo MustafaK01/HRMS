@@ -13,10 +13,11 @@ public class Result {
 		this.message=message;
 	}
 	public boolean isSuccess() {
-		return isSuccess;
+		return this.isSuccess;
 	}
 	public String getMessage() {
-		return message;
+		return this.message;
 	}
+	
 
 }
