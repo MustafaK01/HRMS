@@ -1,11 +1,11 @@
 package kodlamaio.hrms.core.utils.checkers.concretes;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.core.utils.checkers.abstracts.ICandidateRegistrationCheckService;
 import kodlamaio.hrms.entities.concretes.Candidates;
 
-@Repository
+@Service
 public class CandidateRegistrationChecker implements ICandidateRegistrationCheckService{
 
 	@Override
@@ -16,7 +16,6 @@ public class CandidateRegistrationChecker implements ICandidateRegistrationCheck
 		   !candidate.getNationalIdentity().isEmpty()&&
 		   !candidate.getPassword().isEmpty()&&
 		   !(candidate.getBirthOfYear()>2005||candidate.getBirthOfYear()<1970)) {
-			
 			return true;
 		}
 		return false;
