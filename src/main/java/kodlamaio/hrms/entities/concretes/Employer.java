@@ -1,29 +1,47 @@
 package kodlamaio.hrms.entities.concretes;
 
+import java.util.List;
+
+//import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+//import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="employer")
+@PrimaryKeyJoinColumn(name="user_id")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","JobAdvertisements","email","password"})
 public class Employer extends User {
 	
 	@Id
-	@GeneratedValue
-	@Column(name="employer_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id")
 	private int id;
 	
 	@Column(name="company_name")
+	@JsonIgnore
 	private String companyName;
 	
 	@Column(name="phone_number")
+	@JsonIgnore
 	private String phoneNumber;
 	
 	@Column(name="web_address")
+	@JsonIgnore
 	private String webAddress;
-
+	
+	@OneToMany(mappedBy="employer")
+	private List<JobAdvertisement> jobAdvertisements;
+	
 	public Employer() {
 		super();
 	}

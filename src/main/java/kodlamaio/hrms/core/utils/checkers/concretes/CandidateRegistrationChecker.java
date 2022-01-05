@@ -20,4 +20,7 @@ public class CandidateRegistrationChecker implements ICandidateRegistrationCheck
 		}
 		return false;
 	}
+	//boolean candidateEmailIsContainsAt = candidate.getEmail().contains("@");
+	//boolean candidateNationalIdentityLength = candidate.getNationalIdentity().length()<=11;
+
 }

@@ -4,56 +4,53 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-//import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-//import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-
 @Entity
-@Table(name="job_titles")
+@Table(name="cities")
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler","JobAdvertisements"})
-public class Jobs {
+public class City {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
-	//@JsonIgnore
 	private int id;
 	
-	@Column(name="title", unique = true)
-	private String jobTitle;
+	@Column(name="city_name")
+	private String cityName;
 	
 
-	@OneToMany(mappedBy = "jobPosition")
+	@OneToMany(mappedBy = "city")
 	private List<JobAdvertisement> JobAdvertisements;
 	
-	public Jobs() {
+	public City() {
 		super();
 	}
-	public Jobs(int id, String jobTitle) {
+
+	public City(int id, String cityName) {
+		super();
 		this.id = id;
-		this.jobTitle = jobTitle;
+		this.cityName = cityName;
 	}
 
 	public int getId() {
 		return id;
 	}
-
-	public String getJobTitle() {
-		return jobTitle;
+	public String getCityName() {
+		return cityName;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public void setJobTitle(String jobTitle) {
-		this.jobTitle = jobTitle;
+
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
 	}
 
-	
 }
