@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name="employer")
 @PrimaryKeyJoinColumn(name="user_id")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","JobAdvertisements","email","password"})
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","password"})
 public class Employer extends User {
 	
 	@Id
@@ -28,15 +28,12 @@ public class Employer extends User {
 	private int id;
 	
 	@Column(name="company_name")
-	@JsonIgnore
 	private String companyName;
 	
 	@Column(name="phone_number")
-	@JsonIgnore
 	private String phoneNumber;
 	
 	@Column(name="web_address")
-	@JsonIgnore
 	private String webAddress;
 	
 	@OneToMany(mappedBy="employer")

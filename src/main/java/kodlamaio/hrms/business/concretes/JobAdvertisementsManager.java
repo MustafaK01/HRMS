@@ -7,9 +7,9 @@ import kodlamaio.hrms.core.utils.results.ResultDataSuccess;
 import kodlamaio.hrms.core.utils.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.IJobAdvertisementsDao;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
+import kodlamaio.hrms.entities.dtos.JobAdvertisementWithCityDto;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,4 +62,16 @@ public class JobAdvertisementsManager implements IJobAdvertisementsService{
 	public ResultData<List<JobAdvertisement>> getByJobPosition_jobTitle(String jobPosition) {
 		return new ResultDataSuccess<List<JobAdvertisement>>(this.jobAdvertisementDao.getByJobPosition_jobTitle(jobPosition), "İş pozisyonlarına göre veri getirildi");
 	}
+	
+	@Override
+	public ResultData<List<JobAdvertisement>> getOpenPositionByJobPosition_jobTitle(String jobPosition) {
+		return new ResultDataSuccess<List<JobAdvertisement>>(this.jobAdvertisementDao.getOpenPositionByJobPosition_jobTitle(jobPosition), "Açık Pozisyon Sayıları");
+	}
+	
+	@Override
+	public ResultData<List<JobAdvertisementWithCityDto>> getJobAdvertisementWithCity(String cityName) {
+		return new ResultDataSuccess<List<JobAdvertisementWithCityDto>>(this.jobAdvertisementDao.getJobAdvertisementWithCity(cityName), "İş pozisyonlarına göre veri getirildi");
+	}
+
+
 }

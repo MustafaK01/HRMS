@@ -17,6 +17,7 @@ import kodlamaio.hrms.entities.concretes.Employer;
 @RestController
 @RequestMapping("/api/users/employers")
 public class EmployerController {
+	
 	IEmployerService employerService;
 	@Autowired
 	public EmployerController(IEmployerService employerService) {

@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 
 @Entity
@@ -26,17 +28,17 @@ public class JobAdvertisement {
 	private int id;
 	
 	@NotNull
-	@ManyToOne(cascade=CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name="employer_id")
 	private Employer employer;
 	
 	@NotNull
-	@ManyToOne(cascade=CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name="city_id")
 	private City city;
 	
 	@NotNull
-	@ManyToOne(cascade=CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name="job_title_id")
 	private Jobs jobPosition;
 
@@ -89,7 +91,6 @@ public class JobAdvertisement {
 	public Employer getEmployer() {
 		return employer;
 	}
-
 	public City getCity() {
 		return city;
 	}
