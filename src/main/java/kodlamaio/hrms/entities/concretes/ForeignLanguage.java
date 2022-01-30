@@ -1,40 +1,39 @@
 package kodlamaio.hrms.entities.concretes;
 
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="foreign_language")
 public class ForeignLanguage {
-	
 	@Id
 	@GeneratedValue
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="known_languages")
-	private String knownLanguages;
+	@Column(name="foreign_lang")
+	private String foreignLanguage;
 	
-	@Column(name="degree")
-	private String degree;
+	@Column(name="language_level")
+	private String languageLevel;
 	
-	@OneToMany(mappedBy = "foreignLanguages")
-	private List<Cv> cv;
+	@ManyToOne
+	@JoinColumn(name="cv_id")
+	private Cv cv;
+	
+	public ForeignLanguage() {	}
 
-	public ForeignLanguage() { }
-
-	public ForeignLanguage(int id, String knownLanguages, String degree, List<Cv> cv) {
+	public ForeignLanguage(int id, String foreignLanguage, String languageLevel) {
 		super();
 		this.id = id;
-		this.knownLanguages = knownLanguages;
-		this.degree = degree;
-		this.cv = cv;
+		this.foreignLanguage = foreignLanguage;
+		this.languageLevel = languageLevel;
 	}
 
 	public int getId() {
@@ -45,27 +44,21 @@ public class ForeignLanguage {
 		this.id = id;
 	}
 
-	public String getKnownLanguages() {
-		return knownLanguages;
+	public String getForeignLang() {
+		return foreignLanguage;
 	}
 
-	public void setKnownLanguages(String knownLanguages) {
-		this.knownLanguages = knownLanguages;
+	public void setForeignLang(String foreignLang) {
+		this.foreignLanguage = foreignLang;
 	}
 
-	public String getDegree() {
-		return degree;
+	public String getLanguageLevel() {
+		return languageLevel;
 	}
 
-	public void setDegree(String degree) {
-		this.degree = degree;
+	public void setLanguageLevel(String languageLevel) {
+		this.languageLevel = languageLevel;
 	}
 
-	public List<Cv> getCv() {
-		return cv;
-	}
-
-	public void setCv(List<Cv> cv) {
-		this.cv = cv;
-	}
+	
 }

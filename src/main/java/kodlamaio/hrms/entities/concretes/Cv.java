@@ -1,56 +1,68 @@
 package kodlamaio.hrms.entities.concretes;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="cvs")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","school","jobExperience","foreignLanguage","socialAddresses","technicalSkills"})
 public class Cv {
+	
 	@Id
-	@GeneratedValue
-	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="cv_id")
 	private int id;
 	
-	@Column(name="graduation_year")
-	private int graduationYear;
-	
-	@ManyToOne
-	@JoinColumn(name="job_experience_id")
-	private JobExperience jobExperience;
-	
-	@ManyToOne
-	@JoinColumn(name="foreign_language_id")
-	private ForeignLanguage foreignLanguages;
-	
-	@ManyToOne
-	@JoinColumn(name="programming_language_id")
-	private ProgrammingLanguages programmingLanguages;
-	
-	@Column(name="github_account")
-	private String githubAccount;
-	
-	@Column(name="linkedin_account")
-	private String linkedinAccount;
+	@Column(name="summary")
+	private String summary;
 
-	public Cv() { }
+	@OneToMany(mappedBy = "cv")
+	private List<ForeignLanguage> foreignLanguage;
+	
+	@OneToMany(mappedBy="cv")
+	private List<TechnicalSkills> technicalSkills;
+	
+	@OneToMany(mappedBy = "cv")
+	private List<JobExperience> jobExperience;
+	
+	@OneToMany(mappedBy = "cv")
+	private List<School> school;
+	
+	@OneToMany(mappedBy = "cv")
+	private List<SocialAddresses> socialAddresses;
+	
+	@ManyToOne
+	@JoinColumn(name = "candidate_id")
+	private Candidates candidates;
+	
+	public Cv() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-	public Cv(int id, int graduationYear, JobExperience jobExperience, ForeignLanguage foreignLanguages,
-			ProgrammingLanguages programmingLanguages, String githubAccount, String linkedinAccount) {
+	public Cv(int id, String summary, List<ForeignLanguage> foreignLanguage, List<TechnicalSkills> technicalSkills,
+			List<JobExperience> jobExperience, List<School> school, List<SocialAddresses> socialAddresses,
+			Candidates candidates) {
 		super();
 		this.id = id;
-		this.graduationYear = graduationYear;
+		this.summary = summary;
+		this.foreignLanguage = foreignLanguage;
+		this.technicalSkills = technicalSkills;
 		this.jobExperience = jobExperience;
-		this.foreignLanguages = foreignLanguages;
-		this.programmingLanguages = programmingLanguages;
-		this.githubAccount = githubAccount;
-		this.linkedinAccount = linkedinAccount;
+		this.school = school;
+		this.socialAddresses = socialAddresses;
+		this.candidates = candidates;
 	}
 
 	public int getId() {
@@ -61,52 +73,59 @@ public class Cv {
 		this.id = id;
 	}
 
-	public int getGraduationYear() {
-		return graduationYear;
+	public String getSummary() {
+		return summary;
 	}
 
-	public void setGraduationYear(int graduationYear) {
-		this.graduationYear = graduationYear;
+	public void setSummary(String summary) {
+		this.summary = summary;
 	}
 
-	public JobExperience getJobExperience() {
+	public List<ForeignLanguage> getForeignLanguage() {
+		return foreignLanguage;
+	}
+
+	public void setForeignLanguage(List<ForeignLanguage> foreignLanguage) {
+		this.foreignLanguage = foreignLanguage;
+	}
+
+	public List<TechnicalSkills> getTechnicalSkills() {
+		return technicalSkills;
+	}
+
+	public void setTechnicalSkills(List<TechnicalSkills> technicalSkills) {
+		this.technicalSkills = technicalSkills;
+	}
+
+	public List<JobExperience> getJobExperience() {
 		return jobExperience;
 	}
 
-	public void setJobExperience(JobExperience jobExperience) {
+	public void setJobExperience(List<JobExperience> jobExperience) {
 		this.jobExperience = jobExperience;
 	}
 
-	public ForeignLanguage getForeignLanguages() {
-		return foreignLanguages;
+	public List<School> getSchool() {
+		return school;
 	}
 
-	public void setForeignLanguages(ForeignLanguage foreignLanguages) {
-		this.foreignLanguages = foreignLanguages;
+	public void setSchool(List<School> school) {
+		this.school = school;
 	}
 
-	public ProgrammingLanguages getProgrammingLanguages() {
-		return programmingLanguages;
+	public List<SocialAddresses> getSocialAddresses() {
+		return socialAddresses;
 	}
 
-	public void setProgrammingLanguages(ProgrammingLanguages programmingLanguages) {
-		this.programmingLanguages = programmingLanguages;
+	public void setSocialAddresses(List<SocialAddresses> socialAddresses) {
+		this.socialAddresses = socialAddresses;
 	}
 
-	public String getGithubAccount() {
-		return githubAccount;
+	public Candidates getCandidates() {
+		return candidates;
 	}
 
-	public void setGithubAccount(String githubAccount) {
-		this.githubAccount = githubAccount;
+	public void setCandidates(Candidates candidates) {
+		this.candidates = candidates;
 	}
-
-	public String getLinkedinAccount() {
-		return linkedinAccount;
-	}
-
-	public void setLinkedinAccount(String linkedinAccount) {
-		this.linkedinAccount = linkedinAccount;
-	}
-	
 }
